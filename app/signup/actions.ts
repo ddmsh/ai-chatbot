@@ -19,6 +19,13 @@ export async function createUser(
       type: 'error',
       resultCode: ResultCode.UserAlreadyExists
     }
+  }
+  else if (!email.endsWith('@ddm.go.kr')) {
+    // reject if not @ddm.go.kr user
+    return {
+      type: 'error',
+      resultCode: ResultCode.RegistrationFailed
+    }
   } else {
     const user = {
       id: crypto.randomUUID(),
